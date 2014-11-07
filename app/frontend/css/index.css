@@ -1,0 +1,22 @@
+.gray {
+	background-color: #666666;
+	color: #F8FFFF;
+	padding-top: 8px;
+}
+
+.blue {
+	background-color: #428BCA;
+	color: #F8FFFF;
+}
+
+.main-block {
+	border-radius: 2px;
+}
+
+.img-circle {
+	padding-top: 8px;
+}
+
+.btn-primary {
+	background-color: #25B5CF;
+}

@@ -1,0 +1,100 @@
+<!-- views/reviews.ejs -->
+<!doctype html>
+<html>
+<head>
+	<title>Music Reviews</title>
+
+	<!-- Bootstrap base -->
+  <link href="/lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css"> <!-- load fontawesome -->
+
+  <!-- My styles -->
+  <link href="/css/reviews.css" rel="stylesheet">
+</head>
+<body ng-app="reviewApp" ng-controller="reviewController">
+    <div class="navbar-wrapper">
+      <div class="container">
+        <div class="row">
+          <div class="navbar navbar-inverse navbar-static-top" role="navigation">
+            <div class="container">
+              <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                  <span class="sr-only">Toggle navigation</span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="/">J.Allen</a>
+              </div>
+              <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                  <li class="active"><a href="#">Home</a></li>
+                  <li><a href="#">Magic</a></li>
+                  <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Music <span class="caret"></span></a>
+                    <ul class="dropdown-menu" role="menu">
+                      <li><a href="#">My Music</a></li>
+                      <li><a href="/reviews">Reviews</a></li>
+                    </ul>
+                  </li>
+                </ul>
+                <ul class="nav navbar-nav pull-right">
+                  <% if(typeof user == 'undefined'){ %>
+                    <li><a href='/login'>Login</a></li>
+                    <li><a href='/signup'>Sign Up</a></li>
+                  <% } else { %>
+                    <li><a href='/profile'><%= user.local.email %></a></li>
+                  <% } %>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-3 pull-right" id="highest-rated">
+          <p class="text-center"><strong>Highest Rated Albums</strong></p>
+          <div id="rating-container">
+            <div id="rating-slides" class="carousel slide" data-ride="carousel">
+              <ol class="carousel-indicators">
+                <span ng-repeat="review in reviews | filter: filterRatings">
+                  <li data-target="#rating-slides" data-slide-to="{{$index}}"></li>
+                </span>
+              </ol>
+              <div class="carousel-inner">
+                <div class="item" ng-repeat="review in reviews | filter: filterRatings">
+                  <img src="{{review.cover}}" alt="{{review.album}}">
+                </div>
+              </div>
+              <a class="left carousel-control" href="#rating-slides" role="button" data-slide="prev">
+                <span class="glyphicon glyphicon-chevron-left"></span>
+              </a>
+              <a class="right carousel-control" href="#rating-slides" role="button" data-slide="next">
+                <span class="glyphicon glyphicon-chevron-right"></span>
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-3" ng-repeat="review in reviews">
+          <a href="/reviews/{{review._id}}">
+            <img class="img-responsive" src="{{review.cover}}" width="100%"></img>
+            <h3 class="text-center">{{review.artist}}</h3>
+            <h2 class="text-center">{{review.album}}</h2>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- jQuery -->
+    <script src="/lib/jquery/jquery-1.11.1.min.js"></script>
+
+    <!-- Angular -->
+    <script src="/lib/angular/angular.min.js"></script>
+    <script src="/js/reviewsController.js"></script>
+
+    <!-- Bootstrap JS -->
+    <script src="/lib/bootstrap/js/carousel.js"></script>
+
+  </body>

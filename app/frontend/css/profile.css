@@ -1,0 +1,9 @@
+body { 
+	word-wrap:break-word;
+	background-color: #51515a;
+	color: #fffff0;
+}
+
+.well {
+	color: #51515a;
+}

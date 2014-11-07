@@ -1,0 +1,23 @@
+body {
+	background-color: #5a5a51; 
+	word-wrap:break-word;
+	color: #fffff0;
+}
+
+.review-title{
+	font-size: 42px;
+}
+
+.review-rating{
+	font-size: 42px;
+}
+
+.review-head{
+	color: #FFFF99;
+	padding-bottom: 20px;
+}
+
+.review-content{
+	padding-top: 20px;
+	font-size: 14px;
+}
